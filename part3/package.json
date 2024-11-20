@@ -7,17 +7,25 @@
     "dev": "nodemon index.js",
     "build:ui": "rm -rf dist && cd ../../fullstackopen/part2/phonebook && npm run build && cp -r dist ../../../fullstackopen-node/part3/",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "mongoose": "^8.8.2",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "@stylistic/eslint-plugin-js": "^2.11.0",
+    "eslint": "^9.15.0",
+    "globals": "^15.12.0",
     "nodemon": "^3.1.7"
   }
 }
