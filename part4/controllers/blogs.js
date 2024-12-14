@@ -37,6 +37,25 @@ blogsRouter.put('/:id', async (request, response) => {
   response.json(updatedBlog);
 });
 
+blogsRouter.put('/:id/comments', async (request, response) => {
+  const id = request.params.id;
+  const { title, author, url, likes, comments } = request.body;
+  const blog = {
+    title,
+    author,
+    url,
+    likes,
+    comments,
+  };
+  const updatedBlog = await Blog.findByIdAndUpdate(id, blog, {
+    new: true,
+    runValidators: true,
+    context: 'query',
+  });
+
+  response.json(updatedBlog);
+});
+
 blogsRouter.delete('/:id', async (request, response) => {
   const decodedToken = jwt.verify(request.token, process.env.JWT_SECRET); //token comes from middleware
   if (!decodedToken.id) {
